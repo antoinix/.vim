@@ -1,0 +1,19 @@
+# ===
+# === Single Statement
+# ===
+snippet p "use package"
+\usepackage{${1:<++>}}
+endsnippet
+# ===
+# === Complicated Block
+# ===
+snippet doc "\documentclass"
+\documentclass{${1:<++>}}
+\title{${2:<++>}}
+\author{${3:<++>}}
+$0
+\begin{document}
+	\maketitle
+	<++>
+\end{document}
+endsnippet

@@ -1,0 +1,23 @@
+# ===
+# === Single Statement
+# ===
+snippet ct "Class Title"
+#== ${1:<++>}
+$0
+endsnippet
+
+snippet mt "Module Title"
+# ===
+# === ${1:<++>}
+# ===
+$0
+endsnippet
+
+# ===
+# === Complicated Block
+# ===
+snippet sn "Snippet Structure"
+snippet ${1:<++>} "${2:<++>}"
+${3:<++>}
+${0:endsnippet}
+endsnippet

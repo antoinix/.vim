@@ -1,0 +1,36 @@
+# ===
+# === Single Statement
+# ===
+snippet p "Create 'print()'"
+print($1)$0
+endsnippet
+
+snippet ps "Create 'print(str)'"
+print("${1:<++>}"$2)$0
+endsnippet
+
+
+# ===
+# === Complicated Block
+# ===
+snippet cl "Create Class"
+class ${1:<++>}($2):
+	'''${3:<++>}'''
+
+	def __init__(${4:<++>}):
+		${5:<++>}
+
+	def ${6:<++>}(self):
+		'''${7:<++>}'''
+		${0:<++>}
+endsnippet
+
+snippet def "Define a function"
+def ${1:<++>}(${2:<++>}):
+	${0:<++>}
+endsnippet
+
+snippet for "Create 'for' Loop"
+for ${1:<++>} in range(${2:<++>}):
+	${0:<++>}
+endsnippet

@@ -1,0 +1,59 @@
+# ===
+# === Single Statement
+# ===
+snippet c "Add Annotation"
+/* $1 */$0
+endsnippet
+
+snippet in "Include Library"
+#include<${1:<++>}.h>
+$0
+endsnippet
+
+snippet p "Create 'printf();'"
+printf("${1:<++>}",$2);$0
+endsnippet
+
+snippet ps "Create 'printf(str);'"
+printf("${1:<++>}");$0
+endsnippet
+
+snippet s "Create 'scanf();'"
+scanf("${1:<++>}",$2);$0
+endsnippet
+
+# ===
+# === Complicated Block
+# ===
+snippet if "Condition Structure"
+if (${1:<++>})
+{
+	${2:<++>}
+}
+$0
+endsnippet
+
+snippet int "int function"
+int ${1:<++>}($2)
+{
+	${3:<++>}
+}
+$0
+endsnippet
+
+snippet intm "Define 'int main()'"
+int main($1)
+{
+	${2:<++>}
+	return 0;
+}
+$0
+endsnippet
+
+snippet void "Void Functions"
+void ${1:<++>}($2)
+{
+	${3:<++>}
+}
+$0
+endsnippet

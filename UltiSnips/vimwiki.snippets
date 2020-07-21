@@ -1,0 +1,42 @@
+# ===
+# === Single Statement
+# ===
+snippet o "# [Out]: ..."
+# [Out]: ${1:<++>}
+endsnippet
+
+snippet wk "Create A Vimwiki Link"
+[[${1:<++>}]]($1): ${2:<++>}
+endsnippet
+
+
+# ===
+# === Complicated Block
+# ===
+snippet tipk "The Tip Template For Summarizing Keynotes"
+$1#
+### Code Sample:
+\`\`\`
+<++>
+
+# [Out]: <++>
+\`\`\`
+### Resolutions:
+- #### Method_1:
+\`\`\`
+<++>
+
+# [Out]: <++>
+\`\`\`
+endsnippet
+
+snippet tipn "The Tip Template For Learning New Knowledge"
+$1#
+### Used to:
+- #### 1. <++>
+\`\`\`
+<++>
+
+# [Out]: <++>
+\`\`\`
+endsnippet
