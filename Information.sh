@@ -17,10 +17,8 @@ operating_system_update()
 
 operating_system_delete()
 {
-    operating_system_number=$(sed -n -e '/Operating System/=' information.vim)
-    vim_version_number=$(sed -n -e '/Vim Version/=' information.vim)
-    upper_limit=$((operating_system_number+1))
-    lower_limit=$((vim_version_number-1))
+    upper_limit=$(($(sed -n -e '/Operating System/=' information.vim)+1))
+    lower_limit=$(($(sed -n -e '/Vim Version/=' information.vim)-1))
     sed -i "$upper_limit,$lower_limit d" information.vim
     sed -i '/Operating System/ a \\n' information.vim
 }
@@ -37,10 +35,8 @@ vim_version_update()
 
 vim_version_delete()
 {
-    vim_version_number=$(sed -n -e '/Vim Version/=' information.vim)
-    vim_plugins_number=$(sed -n -e '/Vim Plugins/=' information.vim)
-    upper_limit=$((vim_version_number+1))
-    lower_limit=$((vim_plugins_number-1))
+    upper_limit=$(($(sed -n -e '/Vim Version/=' information.vim)+1))
+    lower_limit=$(($(sed -n -e '/Vim Plugins/=' information.vim)-1))
     sed -i "$upper_limit,$lower_limit d" information.vim
     sed -i '/Vim Version/ a \\n' information.vim
 }
@@ -59,10 +55,8 @@ vim_plugins_update()
 
 vim_plugins_delete()
 {
-    vim_plugins_number=$(sed -n -e '/Vim Plugins/=' information.vim)
-    required_programs_number=$(sed -n -e '/Required Programs/=' information.vim)
-    upper_limit=$((vim_plugins_number+1))
-    lower_limit=$((required_programs_number-1))
+    upper_limit=$(($(sed -n -e '/Vim Plugins/=' information.vim)+1))
+    lower_limit=$(($(sed -n -e '/Required Programs/=' information.vim)-1))
     sed -i "$upper_limit,$lower_limit d" information.vim
     sed -i '/Vim Plugins/ a \\n' information.vim
 }
@@ -71,7 +65,7 @@ vim_plugins_delete()
 #== information run
 information_run()
 {
-    operating_system_number=$(sed -n -e '/Operating System/=' information.vim) && operating_system_time_number=$((operating_system_number+1))
+    operating_system_time_number=$(($(sed -n -e '/Operating System/=' information.vim)+1))
     operating_system_old_time="$(sed -n "$operating_system_time_number p" information.vim)"
     operating_system_new_time="$(stat /boot/initramfs-5.4-x86_64.img | sed -n '/^Modify/ p')"
     if test "$operating_system_old_time" != "$operating_system_new_time"
@@ -79,7 +73,7 @@ information_run()
         operating_system_delete && operating_system_update
     fi
 
-    vim_version_number=$(sed -n -e '/Vim Version/=' information.vim) && vim_version_time_number=$((vim_version_number+1))
+    vim_version_time_number=$(($(sed -n -e '/Vim Version/=' information.vim)+1))
     vim_version_old_time=$(sed -n "$vim_version_time_number p" information.vim)
     vim_version_new_time=$(stat /bin/vim | sed -n '/^Modify/ p')
     if test "$vim_version_old_time" != "$vim_version_new_time"
@@ -87,7 +81,7 @@ information_run()
         vim_version_delete && vim_version_update
     fi
 
-    vim_plugins_number=$(sed -n -e '/Vim Plugins/=' information.vim) && vim_plugins_time_number=$((vim_plugins_number+1))
+    vim_plugins_time_number=$(($(sed -n -e '/Vim Plugins/=' information.vim)+1))
     vim_plugins_old_time=$(sed -n "$vim_plugins_time_number p" information.vim)
     vim_plugins_new_time=$(stat /home/antoine/.vim/plugged | sed -n '/^Modify/ p')
     if test "$vim_plugins_old_time" != "$vim_plugins_new_time"

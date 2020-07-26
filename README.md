@@ -7,8 +7,9 @@
 
 - ##### After cloning to local, create a <u>_symbolic link_</u> for vimrc which is suitable for your Distro from <u>_VimrcDir</u>_ to _<u>.vim_</u>
 
-- ##### Browse <u>_.vim/*.vim_</u> and <u>.vim/information.vim</u> for details
+- ##### Browse files with the suffix of <u>_vim_</u> for details
 
+- ##### <u>_Information.sh_</u> is a script to update information.vim automatically
 
 ### EmailMe
 **email:** antoinelee.insnow@gmail.com
