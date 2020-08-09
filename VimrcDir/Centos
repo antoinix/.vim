@@ -1,7 +1,7 @@
-"                     --Only For Manjaro
+"                      --Only For Centos
 "                     --$HOME/.vim/vimrc
 "                          --Antoine Lee
-"                   --Mon Feb 3 CST 2020
+"                   --Mon Aug 3 CST 2020
 "     --https://github.com/antoinix/.vim
 
 
@@ -21,11 +21,6 @@ endif
 "== clear fucking .viminf*.tmp files
 if !empty(glob('~/.viminfo.tmp'))
     augroup mine | autocmd VimEnter * silent :!rm ~/.viminf*.tmp
-endif
-
-"== clear intermediate files of latex
-if !empty(glob('$PWD/*.log'))
-    augroup mine | autocmd VimEnter * silent :!rm $PWD/*.log $PWD/*.aux
 endif
 
 "== clear strange 'selected'
@@ -103,8 +98,6 @@ filetype plugin indent on
 augroup mine | autocmd BufRead,BufNewFile *.m   set filetype=m
 augroup mine | autocmd BufRead,BufNewFile *.srt set filetype=srt
 augroup mine | autocmd BufRead,BufNewFile *.ass set filetype=ass
-augroup mine | autocmd BufRead,BufNewFile *.eif set filetype=eif
-augroup mine | autocmd BufRead,BufNewFile *.tex set filetype=tex
 
 
 " ===
@@ -145,8 +138,6 @@ nnoremap q\ :vs<CR>
 nnoremap q- :sp<CR>
 nnoremap t- :ter<CR>
 nnoremap t\ :vert term<CR>
-tnoremap <c-[> <c-w>:ter<CR>
-tnoremap <c-\> <c-w>:vert term<CR>
 nnoremap qj <c-w>j
 nnoremap qk <c-w>k
 nnoremap qh <c-w>h
@@ -163,9 +154,6 @@ nnoremap + <c-w>=
 " === Cursor
 " ===
 set cursorline
-let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-augroup mine | autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 
 " ===
@@ -220,14 +208,6 @@ func! CompileRunGcc()
   elseif &filetype ==# 'python'
     silent! exec '!clear'
     exec '!time python3 %'
-  elseif &filetype ==# 'html'
-    exec '!chromium % &'
-  elseif &filetype ==# 'markdown'
-    exec 'MarkdownPreview'
-  elseif &filetype ==# 'vimwiki'
-    exec 'MarkdownPreview'
-  elseif &filetype ==# 'tex'
-    exec 'LLPStartPreview'
   endif
 endfunc
 
@@ -249,17 +229,11 @@ Plug 'vim-airline/vim-airline-themes'
 
 
 "== Convenient Operation
-" finder in vim<x04>
-Plug 'kien/ctrlp.vim'
-
 " v6im bookmarks<x05>
 Plug 'MattesGroeger/vim-bookmarks'
 
 " vim home page<x06>
 Plug 'mhinz/vim-startify'
-
-" file tree in vim<x07>
-Plug 'preservim/nerdtree'
 
 " multiple cursors<x08>
 Plug 'terryma/vim-multiple-cursors'
@@ -270,31 +244,19 @@ Plug 'gcmt/wildfire.vim'
 " Code snippet<x0A>
 Plug 'SirVer/ultisnips'
 
-" View Git status quickly<x18>
-Plug 'tpope/vim-fugitive'
-
 " file superlink in vim<x19>
 Plug 'amix/open_file_under_cursor.vim'
-
-" code finder<x1D>
-Plug 'mileszs/ack.vim'
-
-" text alignment<x1E>
-Plug 'godlygeek/tabular'
 
 " quoting processing<x1F>
 Plug 'tpope/vim-surround'
 
 
-"== Visual Aid
+"== Visual Helper
 " cursor underline<x0B>
 Plug 'itchyny/vim-cursorword'
 
 " highliht some words you like<x0C>
 Plug 'lfv89/vim-interestingwords'
-
-" Status in Git tree<x0D>
-Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Indent line<x0E>
 Plug 'Yggdroot/indentLine'
@@ -302,17 +264,11 @@ Plug 'Yggdroot/indentLine'
 " C & C++ highlight<x0F>
 Plug 'bfrg/vim-cpp-modern'
 
-" show Git status in side column<x17>
-Plug 'airblade/vim-gitgutter'
-
 " Colorful Brackets<x1A>
 Plug 'frazrepo/vim-rainbow'
 
 
 "== Neatness Enhancement
-" key mapping manager<x10>
-Plug 'liuchengxu/vim-which-key'
-
 " buffer close enhancement<x11>
 Plug 'moll/vim-bbye'
 
@@ -323,23 +279,6 @@ Plug 'Chiel92/vim-autoformat'
 
 " error check (python)<x14>
 Plug 'dense-analysis/ale'
-
-" Ctags<x1B>
-Plug 'universal-ctags/ctags'
-
-" Tag bar<x1C>
-Plug 'majutsushi/tagbar'
-
-
-"== Note Writer
-"markdown preview<x15>
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
-
-" wiki in vim<x16>
-Plug 'vimwiki/vimwiki'
-
-" Latex Writer<x12>
-Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 
 call plug#end()
 
@@ -373,7 +312,7 @@ call plug#end()
 let g:interestingWordsRandomiseColors = 1
 let g:interestingWordsGUIColors = ['#8CCBEA', '#A4E57E', '#FFDB72', '#FF7272', '#FFB3FF', '#9999FF']
 nnoremap <silent> <leader>k :call InterestingWords('n')<CR>
-nnoremap <silent> <leader>K :call UncolorAllWords()<CR>
+nnoremap <silent> <leader>a :call UncolorAllWords()<CR>
 nnoremap <silent> n :call WordNavigation('forward')<CR>
 nnoremap <silent> N :call WordNavigation('backward')<CR>
 
@@ -411,15 +350,6 @@ function! BookmarkUnmapKeys()
 endfunction
 augroup mine | autocmd BufEnter * :call BookmarkMapKeys()
 augroup mine | autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()
-
-
-" ===
-" === tagbar<x1C>
-" ===
-" First of all, you need to install ctags('Universal Ctags' or 'Exuberant Ctags').
-" Look for help from 'ctags/docs/autotools.rst'.
-let g:tagbar_ctags_bin = '/usr/local/bin/exctags'
-nnoremap tg :TagbarToggle<CR>
 
 
 " ===
@@ -496,38 +426,6 @@ let g:wildfire_objects = {
 
 
 " ===
-" === markdown-preview.nvim<x15>
-" ===
-" ➤  NOTICE:
-" 1. Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
-" 2. If you can not install successfully from the script the author gave, please install offline compressed file from github.
-" 3. Move the decompressed binary file into '~/.vim/plugged/markdown-preview.nvim/app/bin'.
-let g:mkdp_port = ''
-let g:mkdp_open_ip = ''
-let g:mkdp_auto_start = 0
-let g:mkdp_auto_close = 1
-let g:mkdp_browserfunc = ''
-let g:mkdp_refresh_slow = 0
-let g:mkdp_markdown_css = ''
-let g:mkdp_highlight_css = ''
-let g:mkdp_browser = 'chromium'
-let g:mkdp_echo_preview_url = 0
-let g:mkdp_open_to_the_world = 0
-let g:mkdp_command_for_global = 0
-let g:mkdp_page_title = '「${name}」'
-let g:mkdp_preview_options = {
-      \ 'mkit': {},
-      \ 'katex': {},
-      \ 'uml': {},
-      \ 'maid': {},
-      \ 'disable_sync_scroll': 0,
-      \ 'sync_scroll_type': 'middle',
-      \ 'hide_yaml_meta': 1,
-      \ 'sequence_diagrams': {}
-      \ }
-
-
-" ===
 " === vim-autoformat<x13>
 " ===
 " ➤  After installation, you need to do:
@@ -539,7 +437,7 @@ let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
 let g:autoformat_remove_trailing_spaces = 0
 let g:formatters_python = ['autopep8']
-let g:formatterpath = ['$HOME/.vim/astyle/build/gcc/bin']
+let g:formatterpath = ['/root/.vim/astyle/build/gcc/bin']
 
 
 " ===
@@ -582,56 +480,6 @@ let g:ale_lint_on_insert_changed = 0
 let g:ale_lint_on_text_changed = 'never'
 
 
-" ===
-" === nerdtree<x07>
-" ===
-augroup mine | autocmd StdinReadPre * let s:std_in=1
-augroup mine | autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-nnoremap tt :NERDTreeToggle<CR>
-let g:NERDTreeDirArrowExpandable = '➤ '
-let g:NERDTreeDirArrowCollapsible = '●'
-let NERDTreeMapOpenExpl = ''
-let NERDTreeMapUpdir = ''
-let NERDTreeMapUpdirKeepOpen = 'l'
-let NERDTreeMapOpenSplit = ''
-let NERDTreeOpenVSplit = ''
-let NERDTreeMapActivateNode = 'i'
-let NERDTreeMapOpenInTab = 'o'
-let NERDTreeMapPreview = ''
-let NERDTreeMapCloseDir = 'n'
-let NERDTreeMapChangeRoot = 'y'
-
-
-" ==
-" == nerdtree-git-plugin<x0D>
-" ==
-let g:NERDTreeIndicatorMapCustom = {
-      \ 'Modified'  : '',
-      \ 'Staged'    : '◉',
-      \ 'Untracked' : '!',
-      \ 'Renamed'   : '',
-      \ 'Unmerged'  : '',
-      \ 'Deleted'   : 'x',
-      \ 'Dirty'     : '➨ ',
-      \ 'Clean'     : '♪',
-      \ 'Ignored'   : '=',
-      \ 'Unknown'   : '?'
-      \ }
-
-
-" ===
-" === vimwiki<x16>
-" ===
-" Prerequisites :set nocompatible & filetype plugin on & syntax on
-let g:vimwiki_list = [{
-  \ 'ext':'.md',
-  \ 'syntax': 'markdown',
-  \ 'automatic_nested_syntaxes':1,
-\}]
-nmap <leader>we <Plug>VimwikiSplitLink
-nmap <leader>wq <Plug>VimwikiVSplitLInk
-
-
 " ==
 " == vim-multiple-cursors<x08>
 " ==
@@ -641,46 +489,6 @@ let g:multi_cursor_next_key            = '<c-n>'
 let g:multi_cursor_prev_key            = '<c-l>'
 let g:multi_cursor_skip_key            = '<c-x>'
 let g:multi_cursor_quit_key            = '<Esc>'
-
-
-" ===
-" === vim-which-key<x10>
-" ===
-let g:which_key_hspace = 7
-let g:which_key_vertical = 0
-let g:which_key_position = 'botright'
-let g:which_key_map = {}
-call which_key#register('<Space>','g:which_key_map')
-nnoremap <leader>z :WhichKey<Space>''<Left>
-
-
-" ===
-" === vim-fugitive<x18>
-" ===
-nnoremap gs :Gstatus<CR>
-nnoremap ge :Gedit<CR>
-nnoremap gt :Gtabedit<CR>
-nnoremap gh :Gvsplit<CR>
-nnoremap gv :Gsplit<CR>
-nnoremap gb :Gblame<CR>
-
-
-" ===
-" === vim-gitgutter<x17>
-" ===
-let g:gitgutter_map_keys = 0
-let g:gitgutter_max_signs = 500
-let g:gitgutter_sign_added = '◉◉'
-let g:gitgutter_sign_modified = '=='
-let g:gitgutter_sign_removed = 'xx'
-let g:gitgutter_sign_removed_first_line = '➥ '
-let g:gitgutter_sign_modified_removed = '☻☻'
-nnoremap zf :GitGutterQuickFix<CR>
-nmap zc <Plug>(GitGutterNextHunk)
-nmap zx <Plug>(GitGutterPrevHunk)
-nmap zs <Plug>(GitGutterStageHunk)
-nmap zu <Plug>(GitGutterUndoHunk)
-nmap zp <Plug>(GitGutterPreviewHunk)
 
 
 " ===
@@ -697,77 +505,6 @@ let g:cpp_member_variable_highlight = 1
 let g:cpp_named_requirements_highlight = 1
 let g:cpp_experimental_template_highlight = 1
 let g:cpp_experimental_simple_template_highlight = 1
-
-
-" ===
-" === ack.vim<x1D>
-" ===
-" Need to install 'the-silver-searcher' from github.
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
-nnoremap <leader>a :Ack<Space>
-
-
-" ===
-" === tabular<x1E>
-" ===
-nnoremap <leader>t :Tabularize<Space>/
-
-
-" ===
-" === vim-latex-live-preview<x12>
-" ===
-" ➤  Prerequisites :
-" 1. Okular (or any other PDF viewers)
-" 2. pdflatex & latexmk (TexLive is recommended, whose offline installer is in .../.vim/offline)
-" ➤  Guide To Install TexLive :
-" 1. Decompress the compressed file 'texlive-2020-unx.tar.gz'.
-" 2. Enter the decompressed directory.
-" 3. $ ./install-tl -gui(this option can run the installer in GUI window)
-let g:livepreview_engine = 'pdflatex'
-let g:livepreview_previewer = 'okular'
-let g:liverpreview_cursorhold_recompile = 0
-
-
-" ===
-" === ctrlp.vim<x04>
-" ===
-" ➤  If CtrlP is open:
-" :25   : jump to line 25.
-" <F5>  : refresh
-" <Esc> : quit
-" <c-t> : open the entry in a new tab
-" <c-r> : switch to regexp mode.
-" <c-z> : mark/unmark multiple files
-" <c-o> : open the marked files
-" <c-y> : create a new file and its parent directories.
-" <c-d> : switch to filename only search instead of full path.
-":diffthis      : run 'diffthis' on the first 4 files.
-" <c-j> & <c-k> : navigate the result list.
-" <c-f> & <c-b> : cycle between modes.
-" <c-v> & <c-x> : open the selected entry in a new split.
-" <c-n> & <c-p> : select the next/previous string in prompt's history.
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-let gactrlp_working_path_mode = 'ra'
-let gactrlp_switch_buffer = 'et'
-let g:ctrlp_max_files=0
-let g:ctrlp_mruf_max=450
-let g:ctrlp_use_caching = 1
-let g:ctrlp_max_height = 10
-let g:ctrlp_clear_cache_on_exit = 1
-let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-  \ 'file': '\v\.(exe|so|dll)$',
-  \ 'link': 'some_bad_symbolic_links',
-  \ }
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-let g:ctrlp_buftag_types = {'go' : '--language-force=go --golang-types=ftv'}
-let g:ctrlp_map = '<c-p>'
-noremap cp :CtrlP<Space>~/
-noremap cc :help ctrlp-mappings<CR>
 
 
 " ===
@@ -800,7 +537,7 @@ func FileHeader()
 
 "== python
   if &filetype == 'python'
-    call setline(1,"'''<++>'''")
+    call setline(1,"''''''")
   endif
 endfunc
 

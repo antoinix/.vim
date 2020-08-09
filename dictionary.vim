@@ -31,21 +31,21 @@ autocmd FileType docker-compose call AddDockerComposeDict()
 "=== fucntions definition
 "===
 function AddCDict()
-    if g:IsUL
+    if g:IsUni
         set dictionary+=~/.vim/dict/c.txt
     endif
     set complete+=k
 endfunction
 
 function AddGoDict()
-    if g:IsUL
+    if g:IsUni
         set dictionary+=~/.vim/dict/go.txt
     endif
     set complete+=k
 endfunction
 
 function AddCPPDict()
-    if g:IsUL
+    if g:IsUni
         set dictionary+=~/.vim/dict/c.txt
         set dictionary+=~/.vim/dict/cpp.txt
     endif
@@ -53,105 +53,105 @@ function AddCPPDict()
 endfunction
 
 function AddCSSDict()
-    if g:IsUL
+    if g:IsUni
         set dictionary+=~/.vim/dict/css.txt
     endif
     set complete+=k
 endfunction
 
 function AddLuaDict()
-    if g:IsUL
+    if g:IsUni
         set dictionary+=~/.vim/dict/lua.txt
     endif
     set complete+=k
 endfunction
 
 function AddPHPDict()
-    if g:IsUL
+    if g:IsUni
         set dictionary+=~/.vim/dict/php.txt
     endif
     set complete+=k
 endfunction
 
 function AddTexDict()
-    if g:IsUL
+    if g:IsUni
         set dictionary+=~/.vim/dict/tex.txt
     endif
     set complete+=k
 endfunction
 
 function AddHTMLDict()
-    if g:IsUL
+    if g:IsUni
         set dictionary+=~/.vim/dict/html.txt
     endif
     set complete+=k
 endfunction
 
 function AddJavaDict()
-    if g:IsUL
+    if g:IsUni
         set dictionary+=~/.vim/dict/java.txt
     endif
     set complete+=k
 endfunction
 
 function AddPerlDict()
-    if g:IsUL
+    if g:IsUni
         set dictionary+=~/.vim/dict/perl.txt
     endif
     set complete+=k
 endfunction
 
 function AddRustDict()
-    if g:IsUL
+    if g:IsUni
         set dictionary+=~/.vim/dict/rust.txt
     endif
     set complete+=k
 endfunction
 
 function AddTextDict()
-    if g:IsUL
+    if g:IsUni
         set dictionary+=~/.vim/dict/text.txt
     endif
     set complete+=k
 endfunction
 
 function AddMySQLDict()
-    if g:IsUL
+    if g:IsUni
         set dictionary+=~/.vim/dict/mysql.txt
     endif
     set complete+=k
 endfunction
 
 function AddPythonDict()
-    if g:IsUL
+    if g:IsUni
         set dictionary+=~/.vim/dict/python.txt
     endif
     set complete+=k
 endfunction
 
 function AddMarkdownDict()
-    if g:IsUL
+    if g:IsUni
         set dictionary+=~/.vim/dict/markdown.txt
     endif
     set complete+=k
 endfunction
 
 function AddJavaScriptDict()
-    if g:IsUL
+    if g:IsUni
         set dictionary+=~/.vim/dict/javascript.txt
     endif
     set complete+=k
 endfunction
 
 function AddDockerfileDict()
-    if g:IsUL
+    if g:IsUni
         set dictionary+=~/.vim/dict/Dockerfile.txt
     endif
     set complete+=k
 endfunction
 
 function AddDockerComposeDict()
-    if g:IsUL
+    if g:IsUni
         set dictionary+=~/.vim/dict/docker-compose.txt
     endif
     set complete+=k
