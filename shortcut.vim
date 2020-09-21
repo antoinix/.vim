@@ -1,5 +1,4 @@
 " -- shortcut   -- ~/.vim/shortcut.vim
-" -- dictionary -- ~/.vim/dictionary.vim
 " -- information -- ~/.vim/information.vim
 " » » » » » » » » » » » » » » » » » » » » »
 
@@ -81,7 +80,6 @@ cnoreabbrev pc PlugClean
 " ===
 " === markdown
 " ===
-" ➤ NOTICE:
 " 1. These shortcuts are suitable for vimwiki
 " 2. ;q & ;w & ;e (applied in UltiSnips) are not available in INSERT mode
 "== Code-block shortcut

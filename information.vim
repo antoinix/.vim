@@ -1,23 +1,22 @@
 " -- shortcut   -- ~/.vim/shortcut.vim
-" -- dictionary -- ~/.vim/dictionary.vim
 " --information -- ~/.vim/information.vim
 " » » » » » » » » » » » » » » » » » » » » »
 
 
 "== Operating System
-" Modify: 2020-07-20 16:20:53.587776014 +0800
-" lenovo 5.4.52-1-MANJARO
+" Modify: 2020-09-12 10:59:43.760399389 +0800
+" lenovo 5.4.64-1-MANJARO
 
 
 "== Vim Version
-" Modify: 2020-07-12 08:14:12.000000000 +0800
-" VIM - Vi IMproved 8.2 (2019 Dec 12, compiled Jul 12 2020 00:14:12)
-" Included patches: 1-1185
+" Modify: 2020-09-08 05:40:38.000000000 +0800
+" VIM - Vi IMproved 8.2 (2019 Dec 12, compiled Sep 07 2020 21:40:38)
+" Included patches: 1-1634
 " Compiled by Arch Linux
 
 
 "== Vim Plugins
-" Modify: 2020-04-24 21:56:35.837012875 +0800
+" Modify: 2020-08-28 10:20:15.734710856 +0800
 " 1: Plug 'morhetz/gruvbox'
 " 2: Plug 'vim-airline/vim-airline'
 " 3: Plug 'vim-airline/vim-airline-themes'
@@ -44,11 +43,11 @@
 " 24: Plug 'moll/vim-bbye'
 " 25: Plug 'Chiel92/vim-autoformat'
 " 26: Plug 'dense-analysis/ale'
-" 27: Plug 'universal-ctags/ctags'
-" 28: Plug 'majutsushi/tagbar'
-" 29: Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
-" 30: Plug 'vimwiki/vimwiki'
-" 31: Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+" 27: Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" 28: Plug 'universal-ctags/ctags'
+" 29: Plug 'majutsushi/tagbar'
+" 30: Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+" 31: Plug 'vimwiki/vimwiki'
 
 
 "== Required Programs
