@@ -115,6 +115,8 @@ map <LEADER><LEADER> :w<CR>:e ~/.vim/vimrc<CR>
 
 map <LEADER>r :w<CR>:source ~/.vim/vimrc<CR>
 
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
 
 " ===
 " === Searching
@@ -184,12 +186,17 @@ func! CompileRunGcc()
   elseif &filetype ==# 'python'
     silent! exec '!clear'
     exec '!time python3 %'
+  elseif &filetype ==# 'perl'
+    silent! exec '!clear'
+    exec '!time perl %'
   elseif &filetype ==# 'html'
     exec '!chromium % &'
   elseif &filetype ==# 'markdown'
     exec 'MarkdownPreview'
   elseif &filetype ==# 'vimwiki'
     exec 'MarkdownPreview'
+  elseif &filetype ==# 'tex'
+    exec 'LLPStartPreview'
   endif
 endfunc
 
@@ -291,6 +298,9 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
 " wiki in vim<x16>
 Plug 'vimwiki/vimwiki'
+
+" Dynamic Latex Preview
+Plug 'antoinix/dynatex', {'for': 'tex'}
 
 call plug#end()
 
@@ -706,20 +716,30 @@ let g:coc_global_extensions = [
 
 
 " ===
+" === dynatex
+" ===
+let g:dynatex_previewer = 'zathura'
+let g:dynatex_engine = 'pdflatex'
+
+
+" ===
 " === File Header
 " ===
 func FileHeader()
-"== sh
+
   if &filetype == 'sh'
     call setline(1,'#! /bin/bash')
   endif
 
-"== python
   if &filetype == 'python'
     call setline(1,"'''<++>'''")
   endif
-endfunc
 
+  if &filetype == 'perl'
+      call setline(1, '#! /usr/bin/perl')
+  endif
+
+endfunc
 autocmd BufNewFile * exec ":call FileHeader()"
 
 
