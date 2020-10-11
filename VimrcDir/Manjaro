@@ -134,22 +134,38 @@ noremap <LEADER><CR> :nohlsearch<CR>
 " ===
 set splitright
 set splitbelow
-nnoremap q\ :vs<CR>
-nnoremap q- :sp<CR>
+nnoremap z\ :vs<CR>
+nnoremap z- :sp<CR>
 nnoremap t- :ter<CR>
 nnoremap t\ :vert term<CR>
 tnoremap <c-[> <c-w>:ter<CR>
 tnoremap <c-\> <c-w>:vert term<CR>
-nnoremap qj <c-w>j
-nnoremap qk <c-w>k
-nnoremap qh <c-w>h
-nnoremap ql <c-w>l
-nnoremap qc <c-w>c
-nnoremap > <c-w>><c-w>><c-w>>
+nnoremap zj <c-w>j
+nnoremap zk <c-w>k
+nnoremap zh <c-w>h
+nnoremap zl <c-w>l
+nnoremap zq <c-w>c
+nnoremap > <c-w>><c-w>><
 nnoremap < <c-w><<c-w><<c-w><
 nnoremap = <c-w>+<c-w>+<c-w>+
 nnoremap - <c-w>-<c-w>-<c-w>-
 nnoremap + <c-w>=
+
+
+" ===
+" === Code Folding
+" ===
+set foldmethod=manual
+noremap zn zj
+noremap zm zk
+" zc : close the current fold
+" zo : open the current fold
+" zd : delete the current fold
+" [z : move to the top of the current fold
+" ]z : move to the bottom of the current fold
+" zf : fold the selected area
+" zfap : fold the whole paragraph
+" zfnj / zfnk / zfgg / zfG
 
 
 " ===
@@ -196,7 +212,7 @@ func! CompileRunGcc()
   elseif &filetype ==# 'vimwiki'
     exec 'MarkdownPreview'
   elseif &filetype ==# 'tex'
-    exec 'LLPStartPreview'
+    exec 'DynatexStartPreview'
   endif
 endfunc
 
@@ -209,116 +225,127 @@ call plug#begin('~/.vim/plugged')
 " gruvbox vim theme
 Plug 'morhetz/gruvbox'
 
-" vim status bar dress<x02>
+" vim status bar dress
 Plug 'vim-airline/vim-airline'
 
-" as you see...<x03>
+" airline theme
 Plug 'vim-airline/vim-airline-themes'
 
-" finder in vim<x04>
+" ---
+
+" finder in vim
 Plug 'kien/ctrlp.vim'
 
-" v6im bookmarks<x05>
-Plug 'MattesGroeger/vim-bookmarks'
-
-" vim home page<x06>
-Plug 'mhinz/vim-startify'
-
-" file tree in vim<x07>
-Plug 'preservim/nerdtree'
-
-" multiple cursors<x08>
-Plug 'terryma/vim-multiple-cursors'
-
-" Quick choose<x09>
-Plug 'gcmt/wildfire.vim'
-
-" Code snippet<x0A>
-Plug 'SirVer/ultisnips'
-
-" View Git status quickly<x18>
-Plug 'tpope/vim-fugitive'
-
-" file superlink in vim<x19>
-Plug 'amix/open_file_under_cursor.vim'
-
-" code finder<x1D>
+" code finder
 Plug 'mileszs/ack.vim'
 
-" text alignment<x1E>
-Plug 'godlygeek/tabular'
+" ---
 
-" quoting processing<x1F>
-Plug 'tpope/vim-surround'
+" file tree in vim
+Plug 'preservim/nerdtree'
 
-" cursor underline<x0B>
-Plug 'itchyny/vim-cursorword'
-
-" highliht some words you like<x0C>
-Plug 'lfv89/vim-interestingwords'
-
-" Status in Git tree<x0D>
+" Status in Git tree
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
-" Indent line<x0E>
+" Tag bar
+Plug 'majutsushi/tagbar'
+
+" Ctags
+Plug 'universal-ctags/ctags'
+
+" ---
+
+" multiple cursors
+Plug 'terryma/vim-multiple-cursors'
+
+" cursor underline
+Plug 'itchyny/vim-cursorword'
+
+" highliht some words you like
+Plug 'lfv89/vim-interestingwords'
+
+" file superlink in vim
+Plug 'amix/open_file_under_cursor.vim'
+
+" easymotion
+Plug 'easymotion/vim-easymotion'
+
+" ---
+
+" Quick choose
+Plug 'gcmt/wildfire.vim'
+
+" quoting processing
+Plug 'tpope/vim-surround'
+
+" ---
+
+" Indent line
 Plug 'Yggdroot/indentLine'
 
-" C & C++ highlight<x0F>
-Plug 'bfrg/vim-cpp-modern'
-
-" show Git status in side column<x17>
-Plug 'airblade/vim-gitgutter'
-
-" Colorful Brackets<x1A>
+" Colorful Brackets
 Plug 'frazrepo/vim-rainbow'
 
-" key mapping manager<x10>
-Plug 'liuchengxu/vim-which-key'
+" ---
 
-" buffer close enhancement<x11>
-Plug 'moll/vim-bbye'
-
-" python autoformat<x13>
+" python autoformat
 Plug 'Chiel92/vim-autoformat'
 
-" error check (python)<x14>
+" error check (python)
 Plug 'dense-analysis/ale'
 
 " coc.nvim
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" Ctags<x18>
-Plug 'universal-ctags/ctags'
+" C & C++ highlight
+Plug 'bfrg/vim-cpp-modern'
 
-" Tag bar<x1C>
-Plug 'majutsushi/tagbar'
+" ---
 
-"markdown preview<x15>
+"markdown preview
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
-" wiki in vim<x16>
+" wiki in vim
 Plug 'vimwiki/vimwiki'
 
-" Dynamic Latex Preview
-Plug 'antoinix/dynatex', {'for': 'tex'}
+" Code snippet
+Plug 'SirVer/ultisnips'
+
+" ---
+
+" vim bookmarks
+Plug 'MattesGroeger/vim-bookmarks'
+
+" vim home page
+Plug 'mhinz/vim-startify'
+
+" show Git status in side column
+Plug 'airblade/vim-gitgutter'
+
+" buffer close enhancement
+Plug 'moll/vim-bbye'
 
 call plug#end()
 
 
 " ===
-" === Customed Shortcuts Managing(Made by Antoine Lee)
+" === Mapping Note ( by Antoine Lee )
 " ===
-" Due to the nesessary delay of shortcut judging, if you wanna keep working fluently on vim, you should know that:
+" Due to the inevitable delay of shortcut judging, if you wanna keep
+" working fluently on vim, you should know that:
 
 " ➤  1. a(append)  i(insert)    o(new line)  r(replace)   v(visual mode)
 "       s(swap)    p(paste)     y(copy)      f(find)      d(delete)
 "       x(delete)  b(backward)  w(forward)   h(left)      l(right)
 "       j(down)    k(up)        n(next)      /(command)   .(delete)
-"       all of them are not suitable for customed shortcut combination because of delay of shortcut combination judging.
+"    All of them are not suitable for shortcut combination because of the
+"    inevitable delay.
 
-" ➤  2. c(change) can be used for it but pay attention to 'ci*','cw*'...
+" ➤  2. c(change) can be used for mapping but pay attention to 'ci*','cw*'...
 
-" ➤  3. z m q t g [ ] ; ' \ , are available.
+" ➤  3. q(quit) can be used for mapping but pay attention to 'ci*','cw*'...
+
+" ➤  4. z m t g [ ] ; ' \ , are available for that.
 
 
 " ===
@@ -390,7 +417,8 @@ noremap qq :Bdelete<CR>
 " ===
 " === vim-airline-themes<x03>
 " ===
-augroup mine | autocmd VimEnter * AirlineTheme dark
+" AirLineTheme: dark soda luna
+augroup mine | autocmd VimEnter * AirlineTheme soda
 let g:lightline = {
       \     'active': {
       \     'left': [['mode', 'paste' ], ['readonly', 'filename', 'modified']],
@@ -445,7 +473,7 @@ let g:wildfire_objects = {
 " === markdown-preview.nvim<x15>
 " ===
 " 1. Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
-" 2. In China, remember to move the offline decompressed binary file into '/plugged/markdown-preview.nvim/app/bin'.
+" 2. If the installation fails, move the offline binary file to /plugged/markdown-preview.nvim/app/bin.
 let g:mkdp_port = ''
 let g:mkdp_open_ip = ''
 let g:mkdp_auto_start = 0
@@ -585,28 +613,6 @@ let g:multi_cursor_quit_key            = '<Esc>'
 
 
 " ===
-" === vim-which-key<x10>
-" ===
-let g:which_key_hspace = 7
-let g:which_key_vertical = 0
-let g:which_key_position = 'botright'
-let g:which_key_map = {}
-call which_key#register('<Space>','g:which_key_map')
-nnoremap <leader>z :WhichKey<Space>''<Left>
-
-
-" ===
-" === vim-fugitive<x18>
-" ===
-nnoremap gs :Gstatus<CR>
-nnoremap ge :Gedit<CR>
-nnoremap gt :Gtabedit<CR>
-nnoremap gh :Gvsplit<CR>
-nnoremap gv :Gsplit<CR>
-nnoremap gb :Gblame<CR>
-
-
-" ===
 " === vim-gitgutter<x17>
 " ===
 let g:gitgutter_map_keys = 0
@@ -616,12 +622,6 @@ let g:gitgutter_sign_modified = '=='
 let g:gitgutter_sign_removed = 'xx'
 let g:gitgutter_sign_removed_first_line = '➥ '
 let g:gitgutter_sign_modified_removed = '☻☻'
-nnoremap zf :GitGutterQuickFix<CR>
-nmap zc <Plug>(GitGutterNextHunk)
-nmap zx <Plug>(GitGutterPrevHunk)
-nmap zs <Plug>(GitGutterStageHunk)
-nmap zu <Plug>(GitGutterUndoHunk)
-nmap zp <Plug>(GitGutterPreviewHunk)
 
 
 " ===
@@ -648,12 +648,6 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 nnoremap <leader>a :Ack<Space>
-
-
-" ===
-" === tabular<x1E>
-" ===
-nnoremap <leader>t :Tabularize<Space>/
 
 
 " ===
@@ -716,10 +710,13 @@ let g:coc_global_extensions = [
 
 
 " ===
-" === dynatex
+" === vim-easymotion
 " ===
-let g:dynatex_previewer = 'zathura'
-let g:dynatex_engine = 'pdflatex'
+let g:EasyMotion_smartcase = 1
+nmap gw <Plug>(easymotion-s2)
+nmap gl <Plug>(easymotion-overwin-line)
+nmap gn <Plug>(easymotion-next)
+nmap gm <Plug>(easymotion-prev)
 
 
 " ===
@@ -732,7 +729,7 @@ func FileHeader()
   endif
 
   if &filetype == 'python'
-    call setline(1,"'''<++>'''")
+    call setline(1,"''''''")
   endif
 
   if &filetype == 'perl'

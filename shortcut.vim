@@ -14,18 +14,15 @@ augroup mine | autocmd FileType * nnoremap ) $
 augroup mine | autocmd FileType * nnoremap ` ~
 augroup mine | autocmd FileType * nnoremap ;v S<Esc>
 augroup mine | autocmd FileType * inoremap ;v <Esc>S<Esc>
-augroup mine | autocmd FileType * nnoremap S S
+augroup mine | autocmd FileType * nnoremap ;r S
 augroup mine | autocmd FileType * inoremap ;r <Esc>S
-augroup mine | autocmd FileType * nnoremap ;w u:w<CR>
 augroup mine | autocmd FileType * nnoremap <leader>c :!
 augroup mine | autocmd FileType * nnoremap <leader>e :e<Space>~/
-augroup mine | autocmd FileType * nnoremap ;m ^i<Esc>
 augroup mine | autocmd FileType * nnoremap ;f /<++><CR>:nohlsearch<CR>c4l<Esc>
 augroup mine | autocmd FileType * vnoremap Y :w !xclip -i -sel c<CR><CR>
 augroup mine | autocmd FileType * inoremap <c-h> <BS><BS><BS><BS><BS>
-augroup mine | autocmd FileType * nnoremap Q s<space><Esc>
 augroup mine | autocmd FileType * nnoremap . @a
-augroup mine | autocmd FileType * inoremap ;, <Esc>kdd/└──<CR>:nohlsearch<CR>6x
+
 
 " ===
 " === Condition Filetype
@@ -37,6 +34,7 @@ function! SwapCompletionKey()
     if &filetype ==# 'vimwiki'
       inoremap ` <c-n>
       inoremap <c-n> `
+
     else
       inoremap ` <c-n>
       inoremap <Tab> <c-p>
@@ -64,9 +62,8 @@ autocmd BufEnter * :call SmartSemicolonF()
 augroup mine | autocmd FileType vim nnoremap ;c ^i"<Esc>
 augroup mine | autocmd FIleType vim nnoremap ;p /plug#begin<CR>:nohlsearch<CR>
 augroup mine | autocmd FileType vim nnoremap ;s /shortcut.vim<CR>:nohlsearch<CR>
-augroup mine | autocmd FileType vim nnoremap ;d /dictionary.vim<CR>:nohlsearch<CR>
 augroup mine | autocmd FileType vim nnoremap ;i /information.vim<CR>:nohlsearch<CR>
-augroup mine | autocmd FileType vim nnoremap ;k /Keys<Space>For<CR>:nohlsearch<CR>
+augroup mine | autocmd FileType vim nnoremap ;m /Mapping<Space>Note<CR>:nohlsearch<CR>
 augroup mine | autocmd FileType vim nnoremap { ^w
 augroup mine | autocmd FileType vim nnoremap } $h
 cnoreabbrev l ls
@@ -125,11 +122,3 @@ augroup mine | autocmd FileType c noremap ;c ^i//<Esc>
 " ===
 augroup mine | autocmd FileType sh inoremap ;a ${}<++><Esc>F{a
 augroup mine | autocmd FileType sh nnoremap ;c ^i#<Space><Esc>
-
-
-" ===
-" === tex
-" ===
-augroup mine | autocmd FileType tex inoremap ;k {}<++><Esc>F{a
-augroup mine | autocmd FileType tex inoremap ;m $$<++><Esc>F$i
-augroup mine | autocmd FileType tex inoremap ;n \[\]<++><Esc>F\i
