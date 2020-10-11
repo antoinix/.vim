@@ -298,7 +298,7 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'dense-analysis/ale'
 
 " coc.nvim
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " C & C++ highlight
 Plug 'bfrg/vim-cpp-modern'

@@ -16,7 +16,7 @@
 
 
 "== Vim Plugins
-" Modify: 2020-10-11 21:43:39.465912189 +0800
+" Modify: 2020-10-11 23:54:03.070305689 +0800
 " 1: Plug 'morhetz/gruvbox'
 " 2: Plug 'vim-airline/vim-airline'
 " 3: Plug 'vim-airline/vim-airline-themes'
@@ -38,14 +38,15 @@
 " 19: Plug 'frazrepo/vim-rainbow'
 " 20: Plug 'Chiel92/vim-autoformat'
 " 21: Plug 'dense-analysis/ale'
-" 22: Plug 'bfrg/vim-cpp-modern'
-" 23: Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
-" 24: Plug 'vimwiki/vimwiki'
-" 25: Plug 'SirVer/ultisnips'
-" 26: Plug 'MattesGroeger/vim-bookmarks'
-" 27: Plug 'mhinz/vim-startify'
-" 28: Plug 'airblade/vim-gitgutter'
-" 29: Plug 'moll/vim-bbye'
+" 22: Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" 23: Plug 'bfrg/vim-cpp-modern'
+" 24: Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+" 25: Plug 'vimwiki/vimwiki'
+" 26: Plug 'SirVer/ultisnips'
+" 27: Plug 'MattesGroeger/vim-bookmarks'
+" 28: Plug 'mhinz/vim-startify'
+" 29: Plug 'airblade/vim-gitgutter'
+" 30: Plug 'moll/vim-bbye'
 
 
 "== Required Programs
