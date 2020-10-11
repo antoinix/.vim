@@ -66,10 +66,7 @@ augroup mine | autocmd FileType vim nnoremap ;i /information.vim<CR>:nohlsearch<
 augroup mine | autocmd FileType vim nnoremap ;m /Mapping<Space>Note<CR>:nohlsearch<CR>
 augroup mine | autocmd FileType vim nnoremap { ^w
 augroup mine | autocmd FileType vim nnoremap } $h
-cnoreabbrev l ls
-cnoreabbrev h hide
 cnoreabbrev q quit!
-cnoreabbrev b buffer
 cnoreabbrev pi PlugInstall
 cnoreabbrev pc PlugClean
 

@@ -233,8 +233,11 @@ Plug 'vim-airline/vim-airline-themes'
 
 " ---
 
-" finder in vim
-Plug 'kien/ctrlp.vim'
+" fuzzy finder
+Plug 'junegunn/fzf'
+
+" fuzzy finder for vim
+Plug 'junegunn/fzf.vim'
 
 " code finder
 Plug 'mileszs/ack.vim'
@@ -295,7 +298,7 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'dense-analysis/ale'
 
 " coc.nvim
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " C & C++ highlight
 Plug 'bfrg/vim-cpp-modern'
@@ -349,7 +352,7 @@ call plug#end()
 
 
 " ===
-" === vim-interestingwords<x0C>
+" === vim-interestingwords
 " ===
 let g:interestingWordsRandomiseColors = 1
 let g:interestingWordsGUIColors = ['#8CCBEA', '#A4E57E', '#FFDB72', '#FF7272', '#FFB3FF', '#9999FF']
@@ -360,7 +363,7 @@ nnoremap <silent> N :call WordNavigation('backward')<CR>
 
 
 " ===
-" === vim-bookmarks<x05>
+" === vim-bookmarks
 " ===
 let g:bookmark_sign = '⚑'
 let g:bookmark_annotation_sign = ''
@@ -395,7 +398,7 @@ augroup mine | autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()
 
 
 " ===
-" === tagbar<x1C>
+" === tagbar
 " ===
 " 'universal-ctags/ctags' is required
 let g:tagbar_ctags_bin = '/usr/local/bin/exctags'
@@ -403,7 +406,7 @@ nnoremap tg :TagbarToggle<CR>
 
 
 " ===
-" === vim-airline<x02>
+" === vim-airline
 " ===
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
@@ -415,7 +418,7 @@ noremap qq :Bdelete<CR>
 
 
 " ===
-" === vim-airline-themes<x03>
+" === vim-airline-themes
 " ===
 " AirLineTheme: dark soda luna
 augroup mine | autocmd VimEnter * AirlineTheme soda
@@ -428,14 +431,14 @@ let g:lightline = {
 
 
 " ===
-" === indentLine<x0E>
+" === indentLine
 " ===
 let g:indentLine_color_gui = '#ED6824'
 let g:indentLine_char_list = ['¦', '┆', '┊','╏','┇','┋','│','┃','║']
 
 
 " ===
-" === vim-rainbow<x1A>
+" === vim-rainbow
 " ===
 augroup mine | autocmd FileType * call rainbow#load()
 let g:rainbow_active = 1
@@ -450,7 +453,7 @@ let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
 
 
 " ===
-" === ultisnips<x0A>
+" === ultisnips
 " ===
 " Insert Mode / all files
 let g:UltiSnipsExpandTrigger=';q'
@@ -459,7 +462,7 @@ let g:UltiSnipsJumpBackwardTrigger=';e'
 
 
 " ===
-" === wildfire.vim<x09>
+" === wildfire.vim
 " ===
 map <leader>n <Plug>(wildfire-fuel)
 map <leader>m <Plug>(wildfire-water)
@@ -470,7 +473,7 @@ let g:wildfire_objects = {
 
 
 " ===
-" === markdown-preview.nvim<x15>
+" === markdown-preview.nvim
 " ===
 " 1. Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 " 2. If the installation fails, move the offline binary file to /plugged/markdown-preview.nvim/app/bin.
@@ -500,7 +503,7 @@ let g:mkdp_preview_options = {
 
 
 " ===
-" === vim-autoformat<x13>
+" === vim-autoformat
 " ===
 " c/cpp : astyle
 " python: autopep8 (pip3 is recommended)
@@ -513,7 +516,7 @@ let g:formatterpath = ['$HOME/.vim/astyle/build/gcc/bin']
 
 
 " ===
-" === ale<x14>
+" === ale
 " ===
 " vim   : vint (pip3 is recommended)
 " c     : gcc (pacman is recommended)
@@ -552,7 +555,7 @@ let g:ale_lint_on_text_changed = 'never'
 
 
 " ===
-" === nerdtree<x07>
+" === nerdtree
 " ===
 augroup mine | autocmd StdinReadPre * let s:std_in=1
 augroup mine | autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -572,7 +575,7 @@ let NERDTreeMapChangeRoot = 'y'
 
 
 " ==
-" == nerdtree-git-plugin<x0D>
+" == nerdtree-git-plugin
 " ==
 let g:NERDTreeIndicatorMapCustom = {
       \ 'Modified'  : '',
@@ -589,7 +592,7 @@ let g:NERDTreeIndicatorMapCustom = {
 
 
 " ===
-" === vimwiki<x16>
+" === vimwiki
 " ===
 " set nocompatible & filetype plugin on & syntax on
 let g:vimwiki_list = [{
@@ -602,7 +605,7 @@ nmap <leader>wq <Plug>VimwikiVSplitLInk
 
 
 " ==
-" == vim-multiple-cursors<x08>
+" == vim-multiple-cursors
 " ==
 let g:multi_cursor_use_default_mapping = 0
 let g:multi_cursor_start_word_key      = '<c-k>'
@@ -613,7 +616,7 @@ let g:multi_cursor_quit_key            = '<Esc>'
 
 
 " ===
-" === vim-gitgutter<x17>
+" === vim-gitgutter
 " ===
 let g:gitgutter_map_keys = 0
 let g:gitgutter_max_signs = 500
@@ -641,51 +644,13 @@ let g:cpp_experimental_simple_template_highlight = 1
 
 
 " ===
-" === ack.vim<x1D>
+" === ack.vim
 " ===
 " required: the-silver-searcher
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 nnoremap <leader>a :Ack<Space>
-
-
-" ===
-" === ctrlp.vim<x04>
-" ===
-" <F5>  : refresh
-" <Esc> : quit
-" <c-t> : open the entry in a new tab
-" <c-r> : switch to regexp mode.
-" <c-z> : mark/unmark multiple files
-" <c-o> : open the marked files
-" <c-y> : create a new file and its parent directories.
-" <c-d> : switch to filename only search instead of full path.
-":diffthis      : run 'diffthis' on the first 4 files.
-" <c-j> & <c-k> : navigate the result list.
-" <c-f> & <c-b> : cycle between modes.
-" <c-v> & <c-x> : open the selected entry in a new split.
-" <c-n> & <c-p> : select the next/previous string in prompt's history.
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-let gactrlp_working_path_mode = 'ra'
-let gactrlp_switch_buffer = 'et'
-let g:ctrlp_max_files=0
-let g:ctrlp_mruf_max=450
-let g:ctrlp_use_caching = 1
-let g:ctrlp_max_height = 10
-let g:ctrlp_clear_cache_on_exit = 1
-let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-  \ 'file': '\v\.(exe|so|dll)$',
-  \ 'link': 'some_bad_symbolic_links',
-  \ }
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-let g:ctrlp_buftag_types = {'go' : '--language-force=go --golang-types=ftv'}
-let g:ctrlp_map = '<c-p>'
-noremap cp :CtrlP<Space>~/
-noremap cc :help ctrlp-mappings<CR>
 
 
 " ===
@@ -717,6 +682,17 @@ nmap gw <Plug>(easymotion-s2)
 nmap gl <Plug>(easymotion-overwin-line)
 nmap gn <Plug>(easymotion-next)
 nmap gm <Plug>(easymotion-prev)
+
+
+" ===
+" === fzf.vim
+" ===
+cnoreabbrev b Buffers
+cnoreabbrev f Files .
+cnoreabbrev g GFiles
+cnoreabbrev win Windows
+cnoreabbrev his History
+cnoreabbrev fh Files $HOME
 
 
 " ===
