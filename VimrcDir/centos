@@ -1,4 +1,4 @@
-"                      --Only For Centos
+"                      --Only for centos
 "                     --$HOME/.vim/vimrc
 "                          --Antoine Lee
 "                   --Mon Aug 3 CST 2020
@@ -8,6 +8,7 @@
 " ===
 " === Vim Plugins
 " ===
+" run PlugInstall to install plugins
 if !empty(glob('~/.vim/autoload/plug.vim'))
     if empty(glob('~/.vim/plugged'))
         augroup mine | autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
@@ -30,74 +31,87 @@ endif
 
 
 " ===
-" === System Type
-" ===
-" IsWin, IsMac and IsUni are used in dictionary.vim
-let g:IsWin = 0
-let g:IsMac = 0
-let g:IsUni = 0   " Unix or Linux
-if(has('win32') || has('win64') || has('win95') || has('win16'))
-    let g:IsWin = 1
-else
-    if has('mac')
-        let g:IsMac = 1
-    else
-        let g:IsUni = 1
-    endif
-endif
-
-
-" ===
-" === Vim's Compatibility
-" ===
-set nocompatible
-
-
-" ===
-" === Time
-" ===
-set updatetime=500
-set timeoutlen=500
-
-
-" ===
-" === Auto-Saving
-" ===
-set autowrite
-set autoread
-augroup mine | autocmd FocusLost * :wa
-
-
-" ===
-" === Leader Key
-" ===
-let mapleader=' '
-
-
-" ===
-" === Remote vimrc
-" ===
-map <LEADER><LEADER> :w<CR>:e ~/.vim/vimrc<CR>
-map <LEADER>r :w<CR>:source ~/.vim/vimrc<CR>
-
-
-" ===
-" === Encoding
+" === Basic Setting
 " ===
 set encoding=utf-8
+
 set langmenu=en_US.UTF-8
 
+set nocompatible
 
-" ===
-" === Filetype
-" ===
-filetype on
-filetype indent on
-filetype plugin on
-filetype plugin indent on
-augroup mine | autocmd BufRead,BufNewFile *.m   set filetype=m
-augroup mine | autocmd BufRead,BufNewFile *.srt set filetype=srt
-augroup mine | autocmd BufRead,BufNewFile *.ass set filetype=ass
+set updatetime=1000
+
+set timeoutlen=500
+
+set autowrite
+
+set autoread
+
+set list
+
+set textwidth=80
+
+set tabstop=4
+
+set expandtab
+
+set autoindent
+
+set shiftwidth=4
+
+set softtabstop=4
+
+set listchars=tab:▶\ ,trail:●
+
+set cursorline
+
+set number
+
+set relativenumber
+
+set wrap
+
+set scrolloff=3
+
+set ruler
+
+set cmdheight=1
+
+set laststatus=2
+
+set autochdir
+
+set formatoptions-=tc
+
+set showcmd
+
+set showmode
+
+set wildmenu
+
+set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc
+
+set wildmode=longest,list,full
+
+set nobackup
+
+set nowritebackup
+
+set noswapfile
+
+let mapleader=' '
+
+syntax on
+
+syntax enable
+
+augroup mine | autocmd FocusLost * :wa
+
+map <LEADER><LEADER> :w<CR>:e ~/.vim/vimrc<CR>
+
+map <LEADER>r :w<CR>:source ~/.vim/vimrc<CR>
+
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe " normal! g'\"" | endif
 
 
 " ===
@@ -112,80 +126,47 @@ noremap <LEADER><CR> :nohlsearch<CR>
 
 
 " ===
-" === Syntax
+" === Window Spliting
 " ===
-syntax on
-syntax enable
-set list
-set textwidth=80
-set tabstop=4
-set expandtab
-set autoindent
-set shiftwidth=4
-set softtabstop=4
-set listchars=tab:▶\ ,trail:●
-
-
-" ===
-" === Split
-" ===
-" <c-w>+j/k : move focus vertically
-" <c-w>+h/l : move focus horizontally
-" <c-w>+s/v : split the window horizontally/vertically
 set splitright
 set splitbelow
-nnoremap q\ :vs<CR>
-nnoremap q- :sp<CR>
-nnoremap t- :ter<CR>
-nnoremap t\ :vert term<CR>
-nnoremap qj <c-w>j
-nnoremap qk <c-w>k
-nnoremap qh <c-w>h
-nnoremap ql <c-w>l
-nnoremap qc <c-w>c
-nnoremap . <c-w>><c-w>><c-w>>
-nnoremap , <c-w><<c-w><<c-w><
+nnoremap z\ :vs<CR>
+nnoremap z- :sp<CR>
+nnoremap zj <c-w>j
+nnoremap zk <c-w>k
+nnoremap zh <c-w>h
+nnoremap zl <c-w>l
+nnoremap zq <c-w>c
+nnoremap > <c-w>><c-w>><
+nnoremap < <c-w><<c-w><<c-w><
 nnoremap = <c-w>+<c-w>+<c-w>+
 nnoremap - <c-w>-<c-w>-<c-w>-
 nnoremap + <c-w>=
 
 
 " ===
-" === Cursor
+" === Code Folding
 " ===
-set cursorline
+set foldmethod=manual
+noremap zn zj
+noremap zm zk
+" zc : close the current fold
+" zo : open the current fold
+" zd : delete the current fold
+" [z : move to the top of the current fold
+" ]z : move to the bottom of the current fold
+" zf : fold the selected area
+" zfap : fold the whole paragraph
+" zfnj / zfnk / zfgg / zfG
 
 
 " ===
-" === Commandline
+" === FileType
 " ===
-set number
-set relativenumber
-set wrap
-set scrolloff=3
-set ruler
-set cmdheight=1
-
-
-" ===
-" === Status Bar
-" ===
-set laststatus=2
-set autochdir
-set formatoptions-=tc
-set showcmd
-set showmode
-set wildmenu
-set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc
-set wildmode=longest,list,full
-
-
-" ===
-" === swap file
-" ===
-set nobackup
-set nowritebackup
-set noswapfile
+filetype on
+filetype indent on
+filetype plugin on
+filetype plugin indent on
 
 
 " ===
@@ -217,97 +198,111 @@ endfunc
 " ===
 call plug#begin('~/.vim/plugged')
 
-"== Vim Appearance
 " gruvbox vim theme
 Plug 'morhetz/gruvbox'
 
-" vim status bar dress<x02>
+" vim status bar dress
 Plug 'vim-airline/vim-airline'
 
-" as you see...<x03>
+" airline theme
 Plug 'vim-airline/vim-airline-themes'
 
+" ---
 
-"== Convenient Operation
-" v6im bookmarks<x05>
-Plug 'MattesGroeger/vim-bookmarks'
-
-" vim home page<x06>
-Plug 'mhinz/vim-startify'
-
-" multiple cursors<x08>
+" multiple cursors
 Plug 'terryma/vim-multiple-cursors'
 
-" Quick choose<x09>
-Plug 'gcmt/wildfire.vim'
-
-" Code snippet<x0A>
-Plug 'SirVer/ultisnips'
-
-" file superlink in vim<x19>
+" file superlink in vim
 Plug 'amix/open_file_under_cursor.vim'
 
-" quoting processing<x1F>
-Plug 'tpope/vim-surround'
-
-
-"== Visual Helper
-" cursor underline<x0B>
+" cursor underline
 Plug 'itchyny/vim-cursorword'
 
-" highliht some words you like<x0C>
+" highliht some words you like
 Plug 'lfv89/vim-interestingwords'
 
-" Indent line<x0E>
-Plug 'Yggdroot/indentLine'
+" easymotion
+Plug 'easymotion/vim-easymotion'
 
-" C & C++ highlight<x0F>
-Plug 'bfrg/vim-cpp-modern'
+" ---
 
-" Colorful Brackets<x1A>
-Plug 'frazrepo/vim-rainbow'
+" Quick choose
+Plug 'gcmt/wildfire.vim'
 
+" quoting processing
+Plug 'tpope/vim-surround'
 
-"== Neatness Enhancement
-" buffer close enhancement<x11>
+" ---
+
+" Code snippet
+Plug 'SirVer/ultisnips'
+
+" vim bookmarks
+Plug 'MattesGroeger/vim-bookmarks'
+
+" vim home page
+Plug 'mhinz/vim-startify'
+
+" buffer close enhancement
 Plug 'moll/vim-bbye'
 
+" ---
 
-"== Code Helper(completion & autoformat & errorcheck & navigation)
-" python autoformat<x13>
+" Indent line
+Plug 'Yggdroot/indentLine'
+
+" Colorful Brackets
+Plug 'frazrepo/vim-rainbow'
+
+" ---
+
+" C & C++ highlight
+Plug 'bfrg/vim-cpp-modern'
+
+" python autoformat
 Plug 'Chiel92/vim-autoformat'
 
-" error check (python)<x14>
+" error check (python)
 Plug 'dense-analysis/ale'
+
+" ---
+
+" file tree in vim
+Plug 'preservim/nerdtree'
+
+" ---
+
+" fuzzy finder
+Plug 'junegunn/fzf'
+
+" fuzzy finder for vim
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
 
 " ===
-" === Keys For Custom Shortcuts (Made by Antoine Lee)
+" === Mapping Note ( by Antoine Lee )
 " ===
-" Because of the nesessary delay of shortcut, if you wanna keep working fluently on vim:
+" Due to the inevitable delay of shortcut judging, if you wanna keep
+" working fluently on vim, you should know that:
 
-" ➤  1. a(append), i(insert), o(new line), r(replace), v(visual), s(swap)
-"   are not suitable to be the first character of custom shortcut.
+" 1. a(append)  i(insert)    o(new line)  r(replace)   v(visual mode)
+"       s(swap)    p(paste)     y(copy)      f(find)      d(delete)
+"       x(delete)  b(backward)  w(forward)   h(left)      l(right)
+"       j(down)    k(up)        n(next)      /(command)   .(delete)
+"    All of them are not suitable for shortcut combination because of the
+"    inevitable delay.
 
-" ➤  2. p(paste), y(yank), f(find), d(delete), x(cross)
-"   are not suitable to be the first character of custom shortcut.
+" 2. c(change) can be used for mapping but pay attention to 'ci*','cw*'...
 
-" ➤  3. b(backward), w(forward), h(left), l(right), j(down), k(up), n(next)
-"   are not suitable to be the first character of shortcut.
+" 3. q(quit) can be used for mapping but pay attention to 'ci*','cw*'...
 
-" ➤  4. /(command) and .(delete) are not suitable too
-
-" ➤  5. z m q t g are awesome to be the head of shortcut
-
-" ➤  6. [ ] ; ' \ , are better than ? <Space>
-
-" ➤  7. c(change) can be the head of shortcut but be attention to 'ci*','cw*'...
+" 4. z m t g [ ] ; ' \ , are available for that.
 
 
 " ===
-" === vim-interestingwords<x0C>
+" === vim-interestingwords
 " ===
 let g:interestingWordsRandomiseColors = 1
 let g:interestingWordsGUIColors = ['#8CCBEA', '#A4E57E', '#FFDB72', '#FF7272', '#FFB3FF', '#9999FF']
@@ -318,7 +313,7 @@ nnoremap <silent> N :call WordNavigation('backward')<CR>
 
 
 " ===
-" === vim-bookmarks<x05>
+" === vim-bookmarks
 " ===
 let g:bookmark_sign = '⚑'
 let g:bookmark_annotation_sign = ''
@@ -353,7 +348,7 @@ augroup mine | autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()
 
 
 " ===
-" === vim-airline<x02>
+" === vim-airline
 " ===
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
@@ -365,7 +360,7 @@ noremap qq :Bdelete<CR>
 
 
 " ===
-" === vim-airline-themes<x03>
+" === vim-airline-themes
 " ===
 augroup mine | autocmd VimEnter * AirlineTheme dark
 let g:lightline = {
@@ -377,21 +372,14 @@ let g:lightline = {
 
 
 " ===
-" === indentLine<x0E>
+" === indentLine
 " ===
 let g:indentLine_color_gui = '#ED6824'
 let g:indentLine_char_list = ['¦', '┆', '┊','╏','┇','┋','│','┃','║']
 
 
 " ===
-" === startify<x06>
-" ===
-" :h startify      : look into the documentation
-" :h startify-faq  : look FAQ about it
-
-
-" ===
-" === vim-rainbow<x1A>
+" === vim-rainbow
 " ===
 augroup mine | autocmd FileType * call rainbow#load()
 let g:rainbow_active = 1
@@ -406,7 +394,7 @@ let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
 
 
 " ===
-" === ultisnips<x0A>
+" === ultisnips
 " ===
 " Insert Mode / all files
 let g:UltiSnipsExpandTrigger=';q'
@@ -415,7 +403,7 @@ let g:UltiSnipsJumpBackwardTrigger=';e'
 
 
 " ===
-" === wildfire.vim<x09>
+" === wildfire.vim
 " ===
 map <leader>n <Plug>(wildfire-fuel)
 map <leader>m <Plug>(wildfire-water)
@@ -426,9 +414,8 @@ let g:wildfire_objects = {
 
 
 " ===
-" === vim-autoformat<x13>
+" === vim-autoformat
 " ===
-" ➤  After installation, you need to do:
 " c  : astyle
 " cpp: astyle
 " python: autopep8 (pip3 is recommended)
@@ -441,9 +428,8 @@ let g:formatterpath = ['/root/.vim/astyle/build/gcc/bin']
 
 
 " ===
-" === ale<x14>
+" === ale
 " ===
-" ➤  After installation, you need to do:
 " vim   : vint (pip3 is recommended)
 " c     : gcc (pacman is recommended)
 " cpp   : gcc (pacman is recommended)
@@ -481,7 +467,7 @@ let g:ale_lint_on_text_changed = 'never'
 
 
 " ==
-" == vim-multiple-cursors<x08>
+" == vim-multiple-cursors
 " ==
 let g:multi_cursor_use_default_mapping = 0
 let g:multi_cursor_start_word_key      = '<c-k>'
@@ -508,16 +494,6 @@ let g:cpp_experimental_simple_template_highlight = 1
 
 
 " ===
-" === vim-surround<x1F>
-" ===
-" ds[sign]           : delete the surrounded signs
-" cs[sign_a][sign_b] : change the surrounded signs to another one
-" cst[]              :
-" ysiw[sign]         : add the surrounded signs for the current word
-" yss[sign]          : add the surrounded signs for the current line
-
-
-" ===
 " === gruvbox
 " ===
 colorscheme gruvbox
@@ -527,20 +503,60 @@ set background=dark
 
 
 " ===
+" === easymotion
+" ===
+let g:EasyMotion_smartcase = 1
+nmap gw <Plug>(easymotion-s2)
+nmap gl <Plug>(easymotion-overwin-line)
+nmap gn <Plug>(easymotion-next)
+nmap gm <Plug>(easymotion-prev)
+
+
+" ===
+" === fzf.vim
+" ===
+cnoreabbrev b Buffers
+cnoreabbrev f Files .
+cnoreabbrev g GFiles
+cnoreabbrev win Windows
+cnoreabbrev his History
+cnoreabbrev fh Files $HOME
+
+
+" ===
+" === nerdtree
+" ===
+augroup mine | autocmd StdinReadPre * let s:std_in=1
+augroup mine | autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+nnoremap tt :NERDTreeToggle<CR>
+let g:NERDTreeDirArrowExpandable = '+'
+let g:NERDTreeDirArrowCollapsible = '.'
+let NERDTreeMapOpenExpl = ''
+let NERDTreeMapUpdir = ''
+let NERDTreeMapUpdirKeepOpen = 'l'
+let NERDTreeMapOpenSplit = ''
+let NERDTreeOpenVSplit = ''
+let NERDTreeMapActivateNode = 'i'
+let NERDTreeMapOpenInTab = 'o'
+let NERDTreeMapPreview = ''
+let NERDTreeMapCloseDir = 'n'
+let NERDTreeMapChangeRoot = 'y'
+
+
+" ===
 " === File Header
 " ===
 func FileHeader()
-"== sh
-  if &filetype == 'sh'
+
+  if &filetype ==# 'sh'
     call setline(1,'#! /bin/bash')
   endif
 
-"== python
-  if &filetype == 'python'
+  if &filetype ==# 'python'
     call setline(1,"''''''")
   endif
-endfunc
 
+endfunc
 autocmd BufNewFile * exec ":call FileHeader()"
 
 
@@ -549,9 +565,6 @@ autocmd BufNewFile * exec ":call FileHeader()"
 " ===
 "== shortcut
 source ~/.vim/shortcut.vim
-
-"== dictionary
-source ~/.vim/dictionary.vim
 
 "== information
 source ~/.vim/information.vim

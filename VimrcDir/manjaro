@@ -1,4 +1,4 @@
-"                     --Only For Manjaro
+"                     --Only for manjaro
 "                     --$HOME/.vim/vimrc
 "                          --Antoine Lee
 "                   --Mon Feb 3 CST 2020
@@ -8,7 +8,7 @@
 " ===
 " === Vim Plugins
 " ===
-" run PlugInstall to install plugins on the first use
+" run PlugInstall to install plugins
 if !empty(glob('~/.vim/autoload/plug.vim'))
     if empty(glob('~/.vim/plugged'))
         augroup mine | autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
@@ -25,8 +25,8 @@ if !empty(glob('~/.viminfo.tmp'))
 endif
 
 " clean intermediate files
-if !empty(glob('$PWD/*.log'))
-    augroup mine | autocmd VimEnter * silent :!rm $PWD/*.log $PWD/*.aux
+if !empty(glob('$PWD/selected'))
+    augroup mine | autocmd VimEnter * silent :!rm $PWD/selected
 endif
 
 
@@ -337,18 +337,18 @@ call plug#end()
 " Due to the inevitable delay of shortcut judging, if you wanna keep
 " working fluently on vim, you should know that:
 
-" ➤  1. a(append)  i(insert)    o(new line)  r(replace)   v(visual mode)
+" 1. a(append)  i(insert)    o(new line)  r(replace)   v(visual mode)
 "       s(swap)    p(paste)     y(copy)      f(find)      d(delete)
 "       x(delete)  b(backward)  w(forward)   h(left)      l(right)
 "       j(down)    k(up)        n(next)      /(command)   .(delete)
 "    All of them are not suitable for shortcut combination because of the
 "    inevitable delay.
 
-" ➤  2. c(change) can be used for mapping but pay attention to 'ci*','cw*'...
+" 2. c(change) can be used for mapping but pay attention to 'ci*','cw*'...
 
-" ➤  3. q(quit) can be used for mapping but pay attention to 'ci*','cw*'...
+" 3. q(quit) can be used for mapping but pay attention to 'ci*','cw*'...
 
-" ➤  4. z m t g [ ] ; ' \ , are available for that.
+" 4. z m t g [ ] ; ' \ , are available for that.
 
 
 " ===
@@ -700,15 +700,15 @@ cnoreabbrev fh Files $HOME
 " ===
 func FileHeader()
 
-  if &filetype == 'sh'
+  if &filetype ==# 'sh'
     call setline(1,'#! /bin/bash')
   endif
 
-  if &filetype == 'python'
+  if &filetype ==# 'python'
     call setline(1,"''''''")
   endif
 
-  if &filetype == 'perl'
+  if &filetype ==# 'perl'
       call setline(1, '#! /usr/bin/perl')
   endif
 
